@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150112144714) do
+ActiveRecord::Schema.define(version: 20150116170716) do
 
   create_table "episodes", force: :cascade do |t|
     t.string   "title"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 20150112144714) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "auth_token"
+  end
+
+  add_index "users", ["auth_token"], name: "index_users_on_auth_token"
 
   create_table "zombies", force: :cascade do |t|
     t.string   "name"
