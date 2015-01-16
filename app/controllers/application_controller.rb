@@ -1,0 +1,15 @@
+class ApplicationController < ActionController::Base
+	# Prevent CSRF attacks by raising an exception.
+	# For APIs, you may want to use :null_session instead.
+	protect_from_forgery with: :null_session
+	before_action :set_locale, :set_remote
+
+  	protected
+  	def set_locale
+  		locales = I18n.available_locales
+  		I18n.locale = http_accept_language.compatible_language_from(locales)
+  	end
+  	def set_remote
+  		@remote_ip = request.headers['REMOTE_ADDR']
+  	end
+end
